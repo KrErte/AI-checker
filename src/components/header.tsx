@@ -14,6 +14,7 @@ export function Header() {
     { href: "/human-review", label: "Art. 22 Letter" },
     { href: "/my-rights", label: "My Rights" },
     { href: "/claim", label: "For Companies" },
+    { href: "/pricing", label: "Pricing" },
   ]
 
   return (
