@@ -84,12 +84,17 @@ def main():
     run(ssh, "cd /opt/hiresignal && docker stop hiresignal 2>/dev/null; docker rm hiresignal 2>/dev/null; echo ok", "Stop old container")
 
     print("\n>>> Building Docker image on server (this may take a few minutes)...")
-    out, err, rc = run(ssh, "cd /opt/hiresignal && docker build -t hiresignal . 2>&1", "Docker build")
+    out, err, rc = run(ssh, "cd /opt/hiresignal && docker build --no-cache -t hiresignal . 2>&1", "Docker build")
     if rc != 0:
         print("Docker build failed!")
         sys.exit(1)
 
-    run(ssh, "docker run -d --name hiresignal --restart unless-stopped -p 80:3000 hiresignal", "Run container on port 80")
+    run(ssh,
+        "docker run -d --name hiresignal --restart unless-stopped "
+        "--network dreamlit_default "
+        "-e HOSTNAME=0.0.0.0 -e PORT=3000 "
+        "-p 3002:3000 hiresignal",
+        "Run container on dreamlit_default network (Caddy reverse-proxies hirecheck.eu)")
 
     print("\n>>> Checking container status...")
     run(ssh, "docker ps | grep hiresignal")
