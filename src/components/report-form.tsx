@@ -18,6 +18,7 @@ export function ReportForm() {
   const [responseTime, setResponseTime] = useState("")
   const [rejectionEmail, setRejectionEmail] = useState(false)
   const [comment, setComment] = useState("")
+  const [website, setWebsite] = useState("") // honeypot
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -35,6 +36,7 @@ export function ReportForm() {
           response_time: responseTime,
           rejection_email: rejectionEmail,
           comment: comment || null,
+          website, // honeypot
         }),
       })
 
@@ -67,6 +69,21 @@ export function ReportForm() {
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Honeypot field — hidden from users, bots will fill it */}
+          <div
+            style={{ position: "absolute", left: "-9999px", width: 1, height: 1, overflow: "hidden" }}
+            aria-hidden="true"
+          >
+            <label htmlFor="website">Website (leave blank)</label>
+            <input
+              id="website"
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+              value={website}
+              onChange={(e) => setWebsite(e.target.value)}
+            />
+          </div>
           <div className="space-y-2">
             <Label htmlFor="company">Company *</Label>
             <Input

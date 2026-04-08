@@ -11,9 +11,10 @@ export function Header() {
     { href: "/", label: "Home" },
     { href: "/companies", label: "Companies" },
     { href: "/submit", label: "Submit Report" },
+    { href: "/cv-check", label: "CV Check" },
     { href: "/human-review", label: "Art. 22 Letter" },
     { href: "/my-rights", label: "My Rights" },
-    { href: "/claim", label: "For Companies" },
+    { href: "/ai-act-ready", label: "AI Act Check" },
   ]
 
   return (
@@ -37,6 +38,11 @@ export function Header() {
               {link.label}
             </Link>
           ))}
+          <div className="flex items-center gap-1 text-xs text-slate-500 border-l border-slate-200 pl-4">
+            <Link href="/" className="font-medium hover:text-slate-900">EN</Link>
+            <span>·</span>
+            <Link href="/et" className="font-medium hover:text-slate-900">ET</Link>
+          </div>
         </nav>
 
         {/* Mobile toggle */}
