@@ -12,6 +12,13 @@ const Schema = z.object({
   score: z.number().min(0).max(100).optional(),
   risk: z.string().max(32).optional(),
   annex_iii: z.number().int().min(0).max(10).optional(),
+  // Compliance waitlist fields
+  company: z.string().trim().max(160).optional(),
+  role: z.string().trim().max(80).optional(),
+  employees: z.string().trim().max(32).optional(), // e.g. "1-10", "11-50", "51-200"
+  ats: z.string().trim().max(80).optional(),
+  country: z.string().trim().max(80).optional(),
+  locale: z.string().trim().max(8).optional(),
   website: z.string().max(0).optional().default(""), // honeypot
 })
 
@@ -41,6 +48,12 @@ export async function POST(req: NextRequest) {
       score: parsed.data.score,
       risk: parsed.data.risk,
       annex_iii: parsed.data.annex_iii,
+      company: parsed.data.company,
+      role: parsed.data.role,
+      employees: parsed.data.employees,
+      ats: parsed.data.ats,
+      country: parsed.data.country,
+      locale: parsed.data.locale,
       ip,
     })
     return NextResponse.json({ ok: true })

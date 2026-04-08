@@ -10,15 +10,24 @@ export function Header() {
   const pathname = usePathname() || "/"
   const isEt = pathname === "/et" || pathname.startsWith("/et/")
 
-  const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/companies", label: "Companies" },
-    { href: "/submit", label: "Submit Report" },
-    { href: "/cv-check", label: "CV Check" },
-    { href: "/human-review", label: "Art. 22 Letter" },
-    { href: "/my-rights", label: "My Rights" },
-    { href: "/ai-act-ready", label: "AI Act Check" },
-  ]
+  const navLinks = isEt
+    ? [
+        { href: "/et", label: "Avaleht" },
+        { href: "/companies", label: "Ettevõtted" },
+        { href: "/submit", label: "Raporteeri" },
+        { href: "/cv-check", label: "CV kontroll" },
+        { href: "/ai-act-ready", label: "AI Act kontroll" },
+        { href: "/et/tooandjatele", label: "Tööandjatele", highlight: true },
+      ]
+    : [
+        { href: "/", label: "Home" },
+        { href: "/companies", label: "Companies" },
+        { href: "/submit", label: "Submit Report" },
+        { href: "/cv-check", label: "CV Check" },
+        { href: "/human-review", label: "Art. 22 Letter" },
+        { href: "/ai-act-ready", label: "AI Act Check" },
+        { href: "/for-employers", label: "For Employers", highlight: true },
+      ]
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
@@ -36,7 +45,11 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
+              className={
+                link.highlight
+                  ? "text-sm font-semibold rounded-md bg-blue-600 px-3 py-1.5 text-white hover:bg-blue-700 transition-colors"
+                  : "text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
+              }
             >
               {link.label}
             </Link>
@@ -79,7 +92,11 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-slate-600 hover:text-slate-900"
+                className={
+                  link.highlight
+                    ? "text-sm font-semibold text-blue-700"
+                    : "text-sm font-medium text-slate-600 hover:text-slate-900"
+                }
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}

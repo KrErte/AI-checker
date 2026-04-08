@@ -329,6 +329,36 @@ export default function AiActReadyPage() {
         </p>
       </div>
 
+      {(r.risk === "high" || r.risk === "high_annex_iii") && (
+        <div className="mb-12 rounded-xl border-2 border-blue-600 bg-blue-50 p-6">
+          <p className="mb-2 text-xs font-bold uppercase tracking-widest text-blue-700">
+            Need more than templates?
+          </p>
+          <h3 className="mb-3 text-2xl font-bold">
+            HireCheck Compliance — audit-ready dashboard from €49/mo
+          </h3>
+          <p className="mb-4 text-gray-700">
+            If you&apos;re a high-risk deployer, templates alone won&apos;t keep
+            you safe in an audit. HireCheck Compliance logs every AI decision,
+            generates your FRIA, and keeps every Article 26 document up to date
+            automatically. Founding price for the first 50 companies.
+          </p>
+          <Link
+            href="/for-employers#waitlist"
+            className="inline-block rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700"
+          >
+            Join the founding waitlist →
+          </Link>
+          <p className="mt-3 text-xs text-gray-500">
+            Eesti keeles:{" "}
+            <Link href="/et/tooandjatele#waitlist" className="underline">
+              tooandjatele
+            </Link>
+            .
+          </p>
+        </div>
+      )}
+
       <div className="text-sm text-gray-500">
         <p className="mb-2">
           <strong>Deadline countdown:</strong> {r.deadline_days} days until 2
