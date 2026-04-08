@@ -1,13 +1,14 @@
 import { NextResponse } from "next/server"
 import { z } from "zod"
-import { createClient } from "@/lib/supabase/server"
 import { rateLimit } from "@/lib/rate-limit"
-import { slugify } from "@/lib/slug"
+import { insertReport } from "@/lib/store"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
 
 const ReportSchema = z.object({
+  // Honeypot: must be empty. Real users won't see/fill it.
+  website: z.string().max(0).optional().default(""),
   company_name: z.string().trim().min(2).max(120),
   job_title: z.string().trim().min(2).max(200),
   country: z.string().trim().min(2).max(80).default("Estonia"),
@@ -35,7 +36,6 @@ function getClientIp(request: Request): string {
 }
 
 export async function POST(request: Request) {
-  // 1. Rate limit: 5 reports per IP per hour
   const ip = getClientIp(request)
   const rl = rateLimit(`reports:${ip}`, 5, 60 * 60 * 1000)
   if (!rl.ok) {
@@ -50,7 +50,6 @@ export async function POST(request: Request) {
     )
   }
 
-  // 2. Validate input
   let payload: unknown
   try {
     payload = await request.json()
@@ -65,44 +64,22 @@ export async function POST(request: Request) {
       { status: 400 }
     )
   }
-  const data = parsed.data
 
-  // 3. Persist via Supabase (find-or-create company, then insert report)
+  // Honeypot: silently "succeed" for bots so they don't retry
+  if (parsed.data.website) {
+    return NextResponse.json({ success: true })
+  }
+
   try {
-    const supabase = createClient()
-    const slug = slugify(data.company_name)
-
-    const { data: existing, error: selectError } = await supabase
-      .from("companies")
-      .select("id")
-      .eq("slug", slug)
-      .maybeSingle()
-
-    if (selectError) throw selectError
-
-    let companyId = existing?.id as string | undefined
-
-    if (!companyId) {
-      const { data: created, error: insertError } = await supabase
-        .from("companies")
-        .insert({ name: data.company_name, slug })
-        .select("id")
-        .single()
-      if (insertError) throw insertError
-      companyId = created.id
-    }
-
-    const { error: reportError } = await supabase.from("reports").insert({
-      company_id: companyId,
-      job_title: data.job_title,
-      country: data.country,
-      outcome: data.outcome,
-      response_time: data.response_time,
-      rejection_email: data.rejection_email,
-      comment: data.comment ?? null,
+    await insertReport({
+      company_name: parsed.data.company_name,
+      job_title: parsed.data.job_title,
+      country: parsed.data.country,
+      outcome: parsed.data.outcome,
+      response_time: parsed.data.response_time,
+      rejection_email: parsed.data.rejection_email,
+      comment: parsed.data.comment ?? null,
     })
-    if (reportError) throw reportError
-
     return NextResponse.json(
       { success: true, message: "Report submitted successfully" },
       {
