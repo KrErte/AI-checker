@@ -124,6 +124,26 @@ async function fileInsertReport(r: NewReport): Promise<StoredReport> {
   return report
 }
 
+async function fileListCompanies(): Promise<StoredCompany[]> {
+  return readJson<StoredCompany[]>(COMPANIES_FILE, [])
+}
+
+async function fileGetCompanyBySlug(slug: string): Promise<StoredCompany | null> {
+  const companies = await readJson<StoredCompany[]>(COMPANIES_FILE, [])
+  return companies.find((c) => c.slug === slug) ?? null
+}
+
+async function fileListReportsForCompany(companyId: string): Promise<StoredReport[]> {
+  const reports = await readJson<StoredReport[]>(REPORTS_FILE, [])
+  return reports
+    .filter((r) => r.company_id === companyId)
+    .sort((a, b) => b.created_at.localeCompare(a.created_at))
+}
+
+async function fileListAllReports(): Promise<StoredReport[]> {
+  return readJson<StoredReport[]>(REPORTS_FILE, [])
+}
+
 async function fileStats(): Promise<Stats> {
   const [reports, companies] = await Promise.all([
     readJson<StoredReport[]>(REPORTS_FILE, []),
@@ -179,6 +199,51 @@ async function supabaseInsertReport(r: NewReport): Promise<StoredReport> {
   return inserted as StoredReport
 }
 
+async function supabaseListCompanies(): Promise<StoredCompany[]> {
+  const supabase = createClient()
+  const { data, error } = await supabase
+    .from("companies")
+    .select("id, name, slug, created_at")
+    .order("created_at", { ascending: false })
+    .limit(500)
+  if (error) throw error
+  return (data ?? []) as StoredCompany[]
+}
+
+async function supabaseGetCompanyBySlug(slug: string): Promise<StoredCompany | null> {
+  const supabase = createClient()
+  const { data, error } = await supabase
+    .from("companies")
+    .select("id, name, slug, created_at")
+    .eq("slug", slug)
+    .maybeSingle()
+  if (error) throw error
+  return (data ?? null) as StoredCompany | null
+}
+
+async function supabaseListReportsForCompany(companyId: string): Promise<StoredReport[]> {
+  const supabase = createClient()
+  const { data, error } = await supabase
+    .from("reports")
+    .select("*")
+    .eq("company_id", companyId)
+    .order("created_at", { ascending: false })
+    .limit(200)
+  if (error) throw error
+  return (data ?? []) as StoredReport[]
+}
+
+async function supabaseListAllReports(): Promise<StoredReport[]> {
+  const supabase = createClient()
+  const { data, error } = await supabase
+    .from("reports")
+    .select("*")
+    .order("created_at", { ascending: false })
+    .limit(2000)
+  if (error) throw error
+  return (data ?? []) as StoredReport[]
+}
+
 async function supabaseStats(): Promise<Stats> {
   const supabase = createClient()
   const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
@@ -210,6 +275,42 @@ export async function getStats(): Promise<Stats> {
     return await fileStats()
   } catch {
     return { total_reports: 0, total_companies: 0, today_reports: 0 }
+  }
+}
+
+export async function listCompanies(): Promise<StoredCompany[]> {
+  try {
+    if (isSupabaseConfigured()) return await supabaseListCompanies()
+    return await fileListCompanies()
+  } catch {
+    return []
+  }
+}
+
+export async function getCompanyBySlug(slug: string): Promise<StoredCompany | null> {
+  try {
+    if (isSupabaseConfigured()) return await supabaseGetCompanyBySlug(slug)
+    return await fileGetCompanyBySlug(slug)
+  } catch {
+    return null
+  }
+}
+
+export async function listReportsForCompany(companyId: string): Promise<StoredReport[]> {
+  try {
+    if (isSupabaseConfigured()) return await supabaseListReportsForCompany(companyId)
+    return await fileListReportsForCompany(companyId)
+  } catch {
+    return []
+  }
+}
+
+export async function listAllReports(): Promise<StoredReport[]> {
+  try {
+    if (isSupabaseConfigured()) return await supabaseListAllReports()
+    return await fileListAllReports()
+  } catch {
+    return []
   }
 }
 
