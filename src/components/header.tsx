@@ -1,11 +1,14 @@
 "use client"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { useState } from "react"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false)
+  const pathname = usePathname() || "/"
+  const isEt = pathname === "/et" || pathname.startsWith("/et/")
 
   const navLinks = [
     { href: "/", label: "Home" },
@@ -39,9 +42,21 @@ export function Header() {
             </Link>
           ))}
           <div className="flex items-center gap-1 text-xs text-slate-500 border-l border-slate-200 pl-4">
-            <Link href="/" className="font-medium hover:text-slate-900">EN</Link>
+            <Link
+              href="/"
+              className={`font-medium hover:text-slate-900 ${!isEt ? "text-slate-900 underline underline-offset-4" : ""}`}
+              aria-current={!isEt ? "page" : undefined}
+            >
+              EN
+            </Link>
             <span>·</span>
-            <Link href="/et" className="font-medium hover:text-slate-900">ET</Link>
+            <Link
+              href="/et"
+              className={`font-medium hover:text-slate-900 ${isEt ? "text-slate-900 underline underline-offset-4" : ""}`}
+              aria-current={isEt ? "page" : undefined}
+            >
+              ET
+            </Link>
           </div>
         </nav>
 

@@ -13,6 +13,8 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 ENV NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
 ENV NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+ARG NEXT_PUBLIC_PLAUSIBLE_DOMAIN
+ENV NEXT_PUBLIC_PLAUSIBLE_DOMAIN=$NEXT_PUBLIC_PLAUSIBLE_DOMAIN
 RUN npm run build
 
 # Production

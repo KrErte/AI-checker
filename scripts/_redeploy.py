@@ -85,7 +85,9 @@ def run(cmd, timeout=900):
 
 run("mkdir -p /opt/hiresignal/data && chown -R 1001:1001 /opt/hiresignal/data")
 run("docker rm -f hiresignal 2>/dev/null; echo cleaned")
-run("cd /opt/hiresignal && docker build --no-cache -t hiresignal . 2>&1 | tail -30", timeout=900)
+run("cd /opt/hiresignal && docker build --no-cache "
+    "--build-arg NEXT_PUBLIC_PLAUSIBLE_DOMAIN=hirecheck.eu "
+    "-t hiresignal . 2>&1 | tail -30", timeout=900)
 run("docker run -d --name hiresignal --restart unless-stopped "
     "--network dreamlit_default "
     "-e HOSTNAME=0.0.0.0 -e PORT=3000 -e DATA_DIR=/app/data "

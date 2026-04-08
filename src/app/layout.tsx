@@ -1,8 +1,13 @@
 import type { Metadata } from "next"
+import Script from "next/script"
 import localFont from "next/font/local"
 import "./globals.css"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+
+const PLAUSIBLE_DOMAIN = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN
+const PLAUSIBLE_SRC =
+  process.env.NEXT_PUBLIC_PLAUSIBLE_SRC || "https://plausible.io/js/script.js"
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -54,6 +59,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: SITE_URL,
+    languages: {
+      "en-EU": SITE_URL,
+      "et-EE": `${SITE_URL}/et`,
+      "x-default": SITE_URL,
+    },
   },
 }
 
@@ -70,6 +80,14 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
           <Footer />
         </div>
+        {PLAUSIBLE_DOMAIN && (
+          <Script
+            defer
+            data-domain={PLAUSIBLE_DOMAIN}
+            src={PLAUSIBLE_SRC}
+            strategy="afterInteractive"
+          />
+        )}
       </body>
     </html>
   )
