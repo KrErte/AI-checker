@@ -23,17 +23,17 @@ ssh.connect(HOST, username=USER, password=PASS, timeout=15)
 print("Connected!\n")
 
 # Check if image already built
-rc = run(ssh, "docker images hiresignal --format '{{.ID}}'")
+rc = run(ssh, "docker images hirecheck --format '{{.ID}}'")
 
 if rc != 0 or True:
     # Build
     print("\nBuilding (may take a few minutes)...")
-    run(ssh, "cd /opt/hiresignal && docker build -t hiresignal . 2>&1")
+    run(ssh, "cd /opt/hirecheck && docker build -t hirecheck . 2>&1")
 
 # Stop old, run new
-run(ssh, "docker stop hiresignal 2>/dev/null; docker rm hiresignal 2>/dev/null; echo ok")
-run(ssh, "docker run -d --name hiresignal --restart unless-stopped -p 80:3000 hiresignal")
-run(ssh, "docker ps | grep hiresignal")
+run(ssh, "docker stop hirecheck 2>/dev/null; docker rm hirecheck 2>/dev/null; echo ok")
+run(ssh, "docker run -d --name hirecheck --restart unless-stopped -p 80:3000 hirecheck")
+run(ssh, "docker ps | grep hirecheck")
 
-print(f"\n=== HireSignal is live at http://{HOST} ===")
+print(f"\n=== HireCheck is live at http://{HOST} ===")
 ssh.close()

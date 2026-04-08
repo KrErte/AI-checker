@@ -51,7 +51,7 @@ Use the table below. One row per event. Copy the header; never edit old rows.
 
 ### Categories worth tracking separately
 
-- **Art. 22 requests** — human review demanded by a user or candidate (including any HireSignal-generated letters).
+- **Art. 22 requests** — human review demanded by a user or candidate (including any HireCheck-generated letters).
 - **Art. 15(1)(h) requests** — detailed information about automated decision-making logic.
 - **Art. 17 erasure requests** touching AI-held data.
 - **Model updates** — any change to the underlying model, prompt, or vendor.
@@ -87,4 +87,4 @@ This log is owned by **{{DPO_NAME}}** ({{DPO_EMAIL}}). Every employee has a duty
 
 ---
 
-*Template © HireSignal / hirecheck.eu. Licenced for unlimited internal use by the purchasing organisation. Not for resale.*
+*Template © HireCheck / hirecheck.eu. Licenced for unlimited internal use by the purchasing organisation. Not for resale.*

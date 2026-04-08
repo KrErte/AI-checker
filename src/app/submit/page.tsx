@@ -1,7 +1,7 @@
 import { ReportForm } from "@/components/report-form"
 
 export const metadata = {
-  title: "Submit a Report | HireSignal",
+  title: "Submit a Report | HireCheck",
   description: "Report your hiring experience anonymously and help make recruitment transparent.",
 }
 

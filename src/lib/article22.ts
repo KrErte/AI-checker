@@ -85,7 +85,7 @@ ${safeName}
 ${safeEmail}
 
 —
-See kiri on koostatud HireSignali tasuta tööriista abil (https://hirecheck.eu/human-review). Tööriist ei asenda õigusabi.`
+See kiri on koostatud HireChecki tasuta tööriista abil (https://hirecheck.eu/human-review). Tööriist ei asenda õigusabi.`
     return {
       subject,
       body,
@@ -119,7 +119,7 @@ ${safeName}
 ${safeEmail}
 
 —
-This letter was generated with HireSignal's free tool (https://hirecheck.eu/human-review). It does not constitute legal advice.`
+This letter was generated with HireCheck's free tool (https://hirecheck.eu/human-review). It does not constitute legal advice.`
 
   return {
     subject,

@@ -1,5 +1,5 @@
 {
-  "site_name": "HireSignal",
+  "site_name": "HireCheck",
   "site_tagline": "Läbipaistev värbamine algab siit",
   "nav_home": "Avaleht",
   "nav_companies": "Ettevõtted",
@@ -53,7 +53,7 @@
   "rights_generate": "Genereeri meili mall",
   "rights_copy": "Kopeeri lõikelauale",
   "rights_copied": "Kopeeritud!",
-  "footer_about": "HireSignal muudab värbamise läbipaistvaks. Loodud Eestis, Euroopa Liidu jaoks.",
+  "footer_about": "HireCheck muudab värbamise läbipaistvaks. Loodud Eestis, Euroopa Liidu jaoks.",
   "footer_privacy": "Privaatsuspoliitika",
   "footer_terms": "Teenuse tingimused",
   "footer_contact": "Kontakt",

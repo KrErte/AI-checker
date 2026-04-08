@@ -47,7 +47,7 @@ def main():
     _, _, rc = run(ssh, "node --version")
 
     # Create project dir on server
-    run(ssh, "mkdir -p /opt/hiresignal", "Create project dir")
+    run(ssh, "mkdir -p /opt/hirecheck", "Create project dir")
 
     # Upload project files via SFTP
     print("\n>>> Uploading project files...")
@@ -60,7 +60,7 @@ def main():
         for f in files:
             local_path = os.path.join(root, f)
             rel_path = os.path.relpath(local_path, PROJECT_DIR).replace("\\", "/")
-            remote_path = f"/opt/hiresignal/{rel_path}"
+            remote_path = f"/opt/hirecheck/{rel_path}"
             files_to_upload.append((local_path, remote_path))
 
     # Create remote dirs
@@ -81,25 +81,25 @@ def main():
     print(f"Uploaded {len(files_to_upload)} files.\n")
 
     # Build and run with Docker on the server
-    run(ssh, "cd /opt/hiresignal && docker stop hiresignal 2>/dev/null; docker rm hiresignal 2>/dev/null; echo ok", "Stop old container")
+    run(ssh, "cd /opt/hirecheck && docker stop hirecheck 2>/dev/null; docker rm hirecheck 2>/dev/null; echo ok", "Stop old container")
 
     print("\n>>> Building Docker image on server (this may take a few minutes)...")
-    out, err, rc = run(ssh, "cd /opt/hiresignal && docker build --no-cache -t hiresignal . 2>&1", "Docker build")
+    out, err, rc = run(ssh, "cd /opt/hirecheck && docker build --no-cache -t hirecheck . 2>&1", "Docker build")
     if rc != 0:
         print("Docker build failed!")
         sys.exit(1)
 
     run(ssh,
-        "docker run -d --name hiresignal --restart unless-stopped "
+        "docker run -d --name hirecheck --restart unless-stopped "
         "--network dreamlit_default "
         "-e HOSTNAME=0.0.0.0 -e PORT=3000 "
-        "-p 3002:3000 hiresignal",
+        "-p 3002:3000 hirecheck",
         "Run container on dreamlit_default network (Caddy reverse-proxies hirecheck.eu)")
 
     print("\n>>> Checking container status...")
-    run(ssh, "docker ps | grep hiresignal")
+    run(ssh, "docker ps | grep hirecheck")
 
-    print(f"\n=== DONE! HireSignal is live at http://{HOST} ===")
+    print(f"\n=== DONE! HireCheck is live at http://{HOST} ===")
 
     ssh.close()
 

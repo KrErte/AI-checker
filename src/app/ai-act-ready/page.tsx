@@ -102,7 +102,7 @@ export default function AiActReadyPage() {
           email required to see your score.
         </p>
         <p className="mb-8 text-sm text-gray-600">
-          Built by <Link href="/about" className="underline">HireSignal</Link> for
+          Built by <Link href="/about" className="underline">HireCheck</Link> for
           EU SaaS founders. Rule-based scoring against the AI Act final text and
           GDPR. Not legal advice — but it&apos;s the same checklist your DPO would walk
           you through.

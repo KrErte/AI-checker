@@ -5,13 +5,13 @@ import { ArrowRight } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Why HireSignal exists and who is behind it.",
+  description: "Why HireCheck exists and who is behind it.",
 }
 
 export default function AboutPage() {
   return (
     <div className="container mx-auto px-4 py-12 max-w-3xl">
-      <h1 className="text-4xl font-bold mb-6">Why HireSignal exists</h1>
+      <h1 className="text-4xl font-bold mb-6">Why HireCheck exists</h1>
 
       <div className="prose prose-slate max-w-none space-y-6 text-slate-700 text-lg">
         <p>
@@ -36,7 +36,7 @@ export default function AboutPage() {
           face fines up to €35M or 7% of global turnover.
         </p>
         <p>
-          HireSignal is the tool I wish I had had that week. It does two
+          HireCheck is the tool I wish I had had that week. It does two
           things:
         </p>
         <ul className="list-disc pl-6 space-y-2">

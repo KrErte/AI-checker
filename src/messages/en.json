@@ -1,5 +1,5 @@
 {
-  "site_name": "HireSignal",
+  "site_name": "HireCheck",
   "site_tagline": "Transparent Hiring Starts Here",
   "nav_home": "Home",
   "nav_companies": "Companies",
@@ -53,7 +53,7 @@
   "rights_generate": "Generate Email Template",
   "rights_copy": "Copy to Clipboard",
   "rights_copied": "Copied!",
-  "footer_about": "HireSignal makes hiring transparent. Built in Estonia, for the EU.",
+  "footer_about": "HireCheck makes hiring transparent. Built in Estonia, for the EU.",
   "footer_privacy": "Privacy Policy",
   "footer_terms": "Terms of Service",
   "footer_contact": "Contact",

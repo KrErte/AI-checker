@@ -69,4 +69,4 @@ When we add or materially change an AI feature, we update the list in section {{
 
 ---
 
-*Template © HireSignal / hirecheck.eu. Licenced for unlimited internal use by the purchasing organisation. Not for resale.*
+*Template © HireCheck / hirecheck.eu. Licenced for unlimited internal use by the purchasing organisation. Not for resale.*

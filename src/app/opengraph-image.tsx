@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og"
 
 export const runtime = "edge"
-export const alt = "HireSignal — Your CV was rejected by AI. Here's your right to demand a human."
+export const alt = "HireCheck — Your CV was rejected by AI. Here's your right to demand a human."
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
@@ -37,7 +37,7 @@ export default async function Image() {
           >
             HS
           </div>
-          <div style={{ fontSize: 36, fontWeight: 700 }}>HireSignal</div>
+          <div style={{ fontSize: 36, fontWeight: 700 }}>HireCheck</div>
         </div>
 
         <div

@@ -4,7 +4,7 @@ import { EmailTemplate } from "@/components/email-template"
 import { Scale, Shield, Bot, FileText } from "lucide-react"
 
 export const metadata = {
-  title: "Know Your Rights | HireSignal",
+  title: "Know Your Rights | HireCheck",
   description: "Understand your rights as a job candidate under GDPR and the EU AI Act.",
 }
 

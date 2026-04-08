@@ -27,7 +27,7 @@ export function Header() {
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white font-bold text-sm">
             HS
           </div>
-          <span className="font-bold text-xl">HireSignal</span>
+          <span className="font-bold text-xl">HireCheck</span>
         </Link>
 
         {/* Desktop nav */}

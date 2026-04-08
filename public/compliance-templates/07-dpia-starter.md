@@ -101,4 +101,4 @@ Scheduled next review: **{{YYYY-MM-DD}}** (no later than 12 months from sign-off
 
 ---
 
-*Template © HireSignal / hirecheck.eu. Licenced for unlimited internal use by the purchasing organisation. Not for resale.*
+*Template © HireCheck / hirecheck.eu. Licenced for unlimited internal use by the purchasing organisation. Not for resale.*

@@ -75,4 +75,4 @@ Send this questionnaire to every AI vendor **before** you sign. File the complet
 
 ---
 
-*Template © HireSignal / hirecheck.eu. Licenced for unlimited internal use by the purchasing organisation. Not for resale.*
+*Template © HireCheck / hirecheck.eu. Licenced for unlimited internal use by the purchasing organisation. Not for resale.*

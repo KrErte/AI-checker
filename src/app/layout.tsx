@@ -16,7 +16,7 @@ const geistSans = localFont({
 })
 
 const SITE_URL = "https://hirecheck.eu"
-const TITLE = "HireSignal — Your CV was rejected by AI. Demand a human review."
+const TITLE = "HireCheck — Your CV was rejected by AI. Demand a human review."
 const DESCRIPTION =
   "GDPR Article 22 gives you the right to a human review of any automated hiring decision. Generate your free letter, report bad hiring practices, and hold EU employers accountable before the AI Act lands in August 2026."
 
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: TITLE,
-    template: "%s · HireSignal",
+    template: "%s · HireCheck",
   },
   description: DESCRIPTION,
   keywords: [
@@ -33,17 +33,17 @@ export const metadata: Metadata = {
     "automated rejection",
     "EU AI Act",
     "hiring transparency",
-    "HireSignal",
+    "HireCheck",
     "hirecheck",
     "Human-First Score",
     "recruiting AI",
     "CV rejected by AI",
   ],
-  authors: [{ name: "HireSignal" }],
+  authors: [{ name: "HireCheck" }],
   openGraph: {
     type: "website",
     url: SITE_URL,
-    siteName: "HireSignal",
+    siteName: "HireCheck",
     title: TITLE,
     description: DESCRIPTION,
     locale: "en_EU",

@@ -66,7 +66,7 @@ def ensure_dir(remote_dir):
 
 for rel in files:
     local = os.path.join(ROOT, rel.replace("/", os.sep))
-    remote = f"/opt/hiresignal/{rel}"
+    remote = f"/opt/hirecheck/{rel}"
     print(f"upload {rel}")
     ensure_dir(os.path.dirname(remote))
     sftp.put(local, remote)
@@ -83,18 +83,18 @@ def run(cmd, timeout=900):
     print(f"[exit {rc}]")
     return rc
 
-run("mkdir -p /opt/hiresignal/data && chown -R 1001:1001 /opt/hiresignal/data")
-run("docker rm -f hiresignal 2>/dev/null; echo cleaned")
-run("cd /opt/hiresignal && docker build --no-cache "
+run("mkdir -p /opt/hirecheck/data && chown -R 1001:1001 /opt/hirecheck/data")
+run("docker rm -f hirecheck 2>/dev/null; echo cleaned")
+run("cd /opt/hirecheck && docker build --no-cache "
     "--build-arg NEXT_PUBLIC_PLAUSIBLE_DOMAIN=hirecheck.eu "
-    "-t hiresignal . 2>&1 | tail -30", timeout=900)
-run("docker run -d --name hiresignal --restart unless-stopped "
+    "-t hirecheck . 2>&1 | tail -30", timeout=900)
+run("docker run -d --name hirecheck --restart unless-stopped "
     "--network dreamlit_default "
     "-e HOSTNAME=0.0.0.0 -e PORT=3000 -e DATA_DIR=/app/data "
-    "-v /opt/hiresignal/data:/app/data "
-    "-p 3002:3000 hiresignal")
-run("sleep 5 && docker logs hiresignal 2>&1 | tail -15")
-run("docker exec dreamlit-caddy-1 wget -qO- http://hiresignal:3000/api/stats 2>&1 | head -5 || true")
+    "-v /opt/hirecheck/data:/app/data "
+    "-p 3002:3000 hirecheck")
+run("sleep 5 && docker logs hirecheck 2>&1 | tail -15")
+run("docker exec dreamlit-caddy-1 wget -qO- http://hirecheck:3000/api/stats 2>&1 | head -5 || true")
 run('curl -sS -o /dev/null -w "https=%{http_code}\\n" https://hirecheck.eu')
 run('curl -sS -o /dev/null -w "human-review=%{http_code}\\n" https://hirecheck.eu/human-review')
 run('curl -sS -o /dev/null -w "stats=%{http_code}\\n" https://hirecheck.eu/api/stats')

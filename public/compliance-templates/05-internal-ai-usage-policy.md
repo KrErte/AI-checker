@@ -71,4 +71,4 @@ This policy is reviewed every {{6}} months by {{OWNER_ROLE}}. Suggestions and im
 
 ---
 
-*Template © HireSignal / hirecheck.eu. Licenced for unlimited internal use by the purchasing organisation. Not for resale.*
+*Template © HireCheck / hirecheck.eu. Licenced for unlimited internal use by the purchasing organisation. Not for resale.*

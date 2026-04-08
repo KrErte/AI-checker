@@ -80,4 +80,4 @@ Data protection supervisory authority: **{{NATIONAL_DPA, e.g. Andmekaitse Inspek
 
 ---
 
-*Template © HireSignal / hirecheck.eu. Licenced for unlimited internal use by the purchasing organisation. Not for resale.*
+*Template © HireCheck / hirecheck.eu. Licenced for unlimited internal use by the purchasing organisation. Not for resale.*

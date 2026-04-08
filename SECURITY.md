@@ -1,6 +1,6 @@
 # Security Audit Notes
 
-Initial security review of the AI-checker (HireSignal) project.
+Initial security review of the AI-checker (HireCheck) project.
 
 ## Findings
 

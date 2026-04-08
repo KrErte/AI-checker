@@ -20,8 +20,8 @@ ssh = paramiko.SSHClient()
 ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 ssh.connect(HOST, username=USER, password=PASS, timeout=15)
 
-run(ssh, "docker logs hiresignal 2>&1 | tail -20")
-run(ssh, "docker exec hiresignal ls /app 2>&1")
+run(ssh, "docker logs hirecheck 2>&1 | tail -20")
+run(ssh, "docker exec hirecheck ls /app 2>&1")
 run(ssh, "curl -s http://localhost:3000 | head -5")
 
 ssh.close()

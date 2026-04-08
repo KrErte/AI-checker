@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Methodology",
-  description: "How the HireSignal Human-First Score is calculated.",
+  description: "How the HireCheck Human-First Score is calculated.",
 }
 
 export default function MethodologyPage() {

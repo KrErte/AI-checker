@@ -21,13 +21,13 @@ ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 ssh.connect(HOST, username=USER, password=PASS, timeout=15)
 
 # Restart with HOSTNAME=0.0.0.0
-run(ssh, "docker stop hiresignal && docker rm hiresignal")
-run(ssh, "docker run -d --name hiresignal --restart unless-stopped --network dreamlit_default -e HOSTNAME=0.0.0.0 -p 3000:3000 hiresignal")
+run(ssh, "docker stop hirecheck && docker rm hirecheck")
+run(ssh, "docker run -d --name hirecheck --restart unless-stopped --network dreamlit_default -e HOSTNAME=0.0.0.0 -p 3000:3000 hirecheck")
 
 import time
 time.sleep(3)
 
-run(ssh, "docker exec dreamlit-caddy-1 wget -q -O /dev/null http://hiresignal:3000 2>&1 && echo 'CONNECTION OK' || echo 'FAILED'")
+run(ssh, "docker exec dreamlit-caddy-1 wget -q -O /dev/null http://hirecheck:3000 2>&1 && echo 'CONNECTION OK' || echo 'FAILED'")
 run(ssh, "curl -sk -o /dev/null -w '%{http_code}' https://hirecheck.eu")
 
 ssh.close()

@@ -10,7 +10,7 @@ export function Footer() {
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white font-bold text-sm">
                 HS
               </div>
-              <span className="font-bold text-xl">HireSignal</span>
+              <span className="font-bold text-xl">HireCheck</span>
             </div>
             <p className="text-sm text-slate-600">
               Hiring transparency for the EU. Built in Estonia. Free forever.
@@ -45,7 +45,7 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-slate-500">&copy; 2026 HireSignal · hirecheck.eu</p>
+          <p className="text-xs text-slate-500">&copy; 2026 HireCheck · hirecheck.eu</p>
           <p className="text-xs text-slate-500">GDPR Art. 22 · EU AI Act compliant by design</p>
         </div>
       </div>

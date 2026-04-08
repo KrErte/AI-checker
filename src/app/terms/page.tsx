@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Terms of Service",
-  description: "Terms governing use of HireSignal.",
+  description: "Terms governing use of HireCheck.",
 }
 
 export default function TermsPage() {
@@ -15,9 +15,9 @@ export default function TermsPage() {
 
       <div className="prose prose-slate max-w-none space-y-6 text-slate-700">
         <section>
-          <h2 className="text-xl font-semibold mb-2">1. What HireSignal is</h2>
+          <h2 className="text-xl font-semibold mb-2">1. What HireCheck is</h2>
           <p>
-            HireSignal (hirecheck.eu) is a free, non-commercial transparency
+            HireCheck (hirecheck.eu) is a free, non-commercial transparency
             project that lets candidates report hiring experiences and generate
             GDPR Article 22 human-review letters. The site is provided
             &quot;as is&quot; with no warranty of any kind.
@@ -47,7 +47,7 @@ export default function TermsPage() {
           <h2 className="text-xl font-semibold mb-2">3. Content and licence</h2>
           <p>
             You retain ownership of the content you submit, but by submitting a
-            report you grant HireSignal a perpetual, irrevocable, worldwide,
+            report you grant HireCheck a perpetual, irrevocable, worldwide,
             royalty-free licence to publish, aggregate, and redistribute it in
             anonymised form as part of an open dataset.
           </p>
@@ -79,7 +79,7 @@ export default function TermsPage() {
         <section>
           <h2 className="text-xl font-semibold mb-2">6. Liability</h2>
           <p>
-            HireSignal is provided without warranty. We are not liable for any
+            HireCheck is provided without warranty. We are not liable for any
             indirect, incidental, or consequential damages arising from use of
             the site, the dataset, or the letter tool.
           </p>

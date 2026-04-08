@@ -22,12 +22,12 @@ ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 ssh.connect(HOST, username=USER, password=PASS, timeout=15)
 print("Connected!\n")
 
-# Stop the hiresignal container on port 3000
-run(ssh, "docker stop hiresignal && docker rm hiresignal")
+# Stop the hirecheck container on port 3000
+run(ssh, "docker stop hirecheck && docker rm hirecheck")
 
 # Create docker-compose with Caddy for hirecheck.eu
 caddyfile = f"""{DOMAIN} {{
-    reverse_proxy hiresignal:3000
+    reverse_proxy hirecheck:3000
 }}
 
 www.{DOMAIN} {{
@@ -36,8 +36,8 @@ www.{DOMAIN} {{
 """
 
 compose = f"""services:
-  hiresignal:
-    image: hiresignal
+  hirecheck:
+    image: hirecheck
     restart: unless-stopped
     expose:
       - "3000"
@@ -61,13 +61,13 @@ volumes:
 
 # Write files
 sftp = ssh.open_sftp()
-run(ssh, "mkdir -p /opt/hiresignal")
+run(ssh, "mkdir -p /opt/hirecheck")
 
-with sftp.file("/opt/hiresignal/Caddyfile", "w") as f:
+with sftp.file("/opt/hirecheck/Caddyfile", "w") as f:
     f.write(caddyfile)
 print("Wrote Caddyfile")
 
-with sftp.file("/opt/hiresignal/docker-compose.yml", "w") as f:
+with sftp.file("/opt/hirecheck/docker-compose.yml", "w") as f:
     f.write(compose)
 print("Wrote docker-compose.yml")
 
@@ -91,7 +91,7 @@ if "dreamlit-caddy" in out:
     # Check if we need to find the dreamlit domain
     rc, compose_content = run(ssh, "cat /opt/dreamlit/docker-compose.yml")
 
-    # Add hiresignal to dreamlit's docker network and update Caddyfile
+    # Add hirecheck to dreamlit's docker network and update Caddyfile
     # Better approach: add hirecheck.eu block to dreamlit Caddyfile
 
     new_block = f"""
@@ -104,8 +104,8 @@ www.{DOMAIN} {{
 }}
 """
 
-    # Run hiresignal standalone on port 3000
-    run(ssh, "docker run -d --name hiresignal --restart unless-stopped -p 3000:3000 hiresignal")
+    # Run hirecheck standalone on port 3000
+    run(ssh, "docker run -d --name hirecheck --restart unless-stopped -p 3000:3000 hirecheck")
 
     # Add to dreamlit Caddyfile
     sftp = ssh.open_sftp()
@@ -122,13 +122,13 @@ www.{DOMAIN} {{
     run(ssh, "docker exec dreamlit-caddy-1 caddy reload --config /etc/caddy/Caddyfile")
 
     # If host.docker.internal doesn't work, connect to host network
-    run(ssh, "docker network connect dreamlit_default hiresignal 2>/dev/null || echo 'already connected or different network'")
+    run(ssh, "docker network connect dreamlit_default hirecheck 2>/dev/null || echo 'already connected or different network'")
 
     # Update Caddyfile to use container name instead
     sftp = ssh.open_sftp()
     with sftp.file("/opt/dreamlit/Caddyfile", "r") as f:
         content = f.read().decode()
-    content = content.replace("host.docker.internal:3000", "hiresignal:3000")
+    content = content.replace("host.docker.internal:3000", "hirecheck:3000")
     with sftp.file("/opt/dreamlit/Caddyfile", "w") as f:
         f.write(content)
     sftp.close()
@@ -138,10 +138,10 @@ www.{DOMAIN} {{
 else:
     # Port 80 free, use our own compose
     print("\nPort 80 is free, starting with docker-compose...")
-    run(ssh, "cd /opt/hiresignal && docker compose up -d")
+    run(ssh, "cd /opt/hirecheck && docker compose up -d")
 
 print(f"\n=== Checking result ===")
-run(ssh, "docker ps --format '{{.Names}} {{.Status}}' | grep -E 'hiresignal|caddy'")
+run(ssh, "docker ps --format '{{.Names}} {{.Status}}' | grep -E 'hirecheck|caddy'")
 run(ssh, f"curl -s -o /dev/null -w '%{{http_code}}' http://localhost:3000")
 
 print(f"\n=== DONE! ===")

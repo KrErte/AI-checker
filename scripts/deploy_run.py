@@ -25,9 +25,9 @@ run(ssh, "ss -tlnp | grep :80")
 run(ssh, "docker ps --format '{{.Names}} {{.Ports}}'")
 
 # Remove failed container, run on 3000
-run(ssh, "docker rm hiresignal 2>/dev/null; echo ok")
-run(ssh, "docker run -d --name hiresignal --restart unless-stopped -p 3000:3000 hiresignal")
-run(ssh, "sleep 2 && docker ps | grep hiresignal")
+run(ssh, "docker rm hirecheck 2>/dev/null; echo ok")
+run(ssh, "docker run -d --name hirecheck --restart unless-stopped -p 3000:3000 hirecheck")
+run(ssh, "sleep 2 && docker ps | grep hirecheck")
 
-print(f"\n=== HireSignal is live at http://{HOST}:3000 ===")
+print(f"\n=== HireCheck is live at http://{HOST}:3000 ===")
 ssh.close()

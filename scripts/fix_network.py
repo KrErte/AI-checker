@@ -20,18 +20,18 @@ ssh = paramiko.SSHClient()
 ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 ssh.connect(HOST, username=USER, password=PASS, timeout=15)
 
-# Check hiresignal container status
-run(ssh, "docker ps -a | grep hiresignal")
+# Check hirecheck container status
+run(ssh, "docker ps -a | grep hirecheck")
 
 # Find dreamlit network name
 run(ssh, "docker network ls | grep dreamlit")
 
-# Connect hiresignal to dreamlit network
-run(ssh, "docker network connect dreamlit_default hiresignal 2>&1 || echo 'trying to reconnect'")
+# Connect hirecheck to dreamlit network
+run(ssh, "docker network connect dreamlit_default hirecheck 2>&1 || echo 'trying to reconnect'")
 
 # Verify connectivity
-run(ssh, "docker exec dreamlit-caddy-1 ping -c 1 hiresignal 2>/dev/null || echo 'ping not available, trying wget'")
-run(ssh, "docker exec dreamlit-caddy-1 wget -q -O /dev/null http://hiresignal:3000 2>&1 && echo 'CONNECTION OK' || echo 'CONNECTION FAILED'")
+run(ssh, "docker exec dreamlit-caddy-1 ping -c 1 hirecheck 2>/dev/null || echo 'ping not available, trying wget'")
+run(ssh, "docker exec dreamlit-caddy-1 wget -q -O /dev/null http://hirecheck:3000 2>&1 && echo 'CONNECTION OK' || echo 'CONNECTION FAILED'")
 
 # Test
 run(ssh, "curl -sk -o /dev/null -w '%{http_code}' https://hirecheck.eu")

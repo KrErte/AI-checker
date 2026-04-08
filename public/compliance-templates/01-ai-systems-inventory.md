@@ -42,4 +42,4 @@ Maintaining this inventory is implicitly required under AI Act Art. 12 (record-k
 
 ---
 
-*Template © HireSignal / hirecheck.eu. Licenced for unlimited internal use by the purchasing organisation. Not for resale.*
+*Template © HireCheck / hirecheck.eu. Licenced for unlimited internal use by the purchasing organisation. Not for resale.*

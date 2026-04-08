@@ -2,7 +2,7 @@
 
 **Version 1.0 · Required on your careers page if you use any AI in recruitment · Updates through 2 August 2026**
 
-> Not legal advice. Starter text against EU AI Act Annex III §4 (hiring as HIGH-RISK from 2 August 2026), GDPR Art. 13, Art. 15 and Art. 22. This is the document HireSignal candidates are most likely to request from you.
+> Not legal advice. Starter text against EU AI Act Annex III §4 (hiring as HIGH-RISK from 2 August 2026), GDPR Art. 13, Art. 15 and Art. 22. This is the document HireCheck candidates are most likely to request from you.
 
 ## Why this matters more than any other template in the pack
 
@@ -77,4 +77,4 @@ We update this page whenever we add, remove, or change an AI tool in our hiring 
 
 ---
 
-*Template © HireSignal / hirecheck.eu. Licenced for unlimited internal use by the purchasing organisation. Not for resale.*
+*Template © HireCheck / hirecheck.eu. Licenced for unlimited internal use by the purchasing organisation. Not for resale.*

@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "How HireSignal handles personal data under GDPR.",
+  description: "How HireCheck handles personal data under GDPR.",
 }
 
 export default function PrivacyPage() {
@@ -17,7 +17,7 @@ export default function PrivacyPage() {
         <section>
           <h2 className="text-xl font-semibold mb-2">1. Who we are</h2>
           <p>
-            HireSignal (hirecheck.eu) is an independent transparency project
+            HireCheck (hirecheck.eu) is an independent transparency project
             operating in the European Union. The controller for personal data
             processed through this site can be contacted at{" "}
             <a href="mailto:privacy@hirecheck.eu" className="text-blue-600 hover:underline">
@@ -113,7 +113,7 @@ export default function PrivacyPage() {
         <section>
           <h2 className="text-xl font-semibold mb-2">7. Cookies</h2>
           <p>
-            HireSignal uses only technically necessary cookies/local-storage
+            HireCheck uses only technically necessary cookies/local-storage
             items required for the site to function. We do not use advertising or
             third-party tracking cookies.
           </p>
