@@ -9,8 +9,8 @@ import {
   AlertTriangle,
   Users,
   Lock,
-  CheckCircle2,
   ArrowRight,
+  CheckCircle2,
   Clock,
 } from "lucide-react"
 
@@ -89,7 +89,7 @@ export default function TooandjateleEtPage() {
                 href="#waitlist"
                 className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3 text-base font-semibold text-white hover:bg-blue-700 shadow-sm"
               >
-                Liitu asutajate ootejärjekorraga
+                Saa varajane ligipääs
                 <ArrowRight className="ml-2 h-4 w-4" />
               </a>
               <Link
@@ -99,10 +99,6 @@ export default function TooandjateleEtPage() {
                 Tee tasuta 3-min kontroll
               </Link>
             </div>
-            <p className="mt-5 text-xs text-slate-500">
-              Asutajahind — €49/kuus — fikseeritud esimesele 50 ettevõttele
-              eluajaks.
-            </p>
           </div>
         </div>
       </section>
@@ -178,67 +174,6 @@ export default function TooandjateleEtPage() {
         </div>
       </section>
 
-      {/* Pricing */}
-      <section className="py-16 md:py-20 border-b border-slate-100">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3 text-center">
-            Hinnad
-          </h2>
-          <p className="text-slate-600 mb-12 text-center">
-            Asutajahinnad esimesele 50 ettevõttele. Fikseeritud eluajaks.
-          </p>
-          <div className="grid md:grid-cols-3 gap-6">
-            {PRICING.map((p) => (
-              <div
-                key={p.tier}
-                className={`rounded-xl border p-8 flex flex-col ${
-                  p.featured
-                    ? "border-blue-600 border-2 bg-gradient-to-b from-blue-50 to-white shadow-md"
-                    : "border-slate-200 bg-white"
-                }`}
-              >
-                {p.featured && (
-                  <div className="mb-3 inline-block rounded-full bg-blue-600 px-3 py-0.5 text-xs font-bold uppercase tracking-wider text-white w-fit">
-                    Populaarseim
-                  </div>
-                )}
-                <div className="text-sm font-semibold text-slate-600 mb-1">
-                  {p.tier}
-                </div>
-                <div className="mb-1">
-                  <span className="text-4xl font-bold text-slate-900">
-                    {p.price} €
-                  </span>
-                  <span className="text-slate-500">/kuus</span>
-                </div>
-                <div className="text-xs text-slate-500 mb-6">{p.audience}</div>
-                <ul className="space-y-2 text-sm text-slate-700 mb-6 flex-1">
-                  {p.features.map((feat) => (
-                    <li key={feat} className="flex gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                      <span>{feat}</span>
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href="#waitlist"
-                  className={`rounded-lg px-4 py-2.5 text-sm font-semibold text-center ${
-                    p.featured
-                      ? "bg-blue-600 text-white hover:bg-blue-700"
-                      : "border border-slate-300 bg-white text-slate-800 hover:bg-slate-50"
-                  }`}
-                >
-                  Liitu ootejärjekorraga
-                </a>
-              </div>
-            ))}
-          </div>
-          <p className="mt-8 text-center text-xs text-slate-500">
-            Saadaval ka aastaarve (−20%). 14-päevane tasuta prooviperiood.
-            Ootejärjekorda liitumiseks krediitkaart pole vajalik.
-          </p>
-        </div>
-      </section>
 
       {/* Timeline */}
       <section className="py-16 md:py-20 bg-slate-900 text-white">
@@ -268,15 +203,15 @@ export default function TooandjateleEtPage() {
         <div className="container mx-auto px-4 max-w-2xl">
           <div className="text-center mb-10">
             <p className="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-2">
-              Asutajate ootejärjekord
+              Varajane ligipääs
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3">
-              Fikseeri 49 €/kuus eluajaks
+              Ole esimene, kes teada saab
             </h2>
             <p className="text-slate-600">
-              Esimesed 50 ettevõtet saavad 20-minutilise sisseelamiskõne otse
-              asutajaga, tasuta ülemineku olemasolevalt protsessilt ning 49 €
-              hinna kinnituse igavesti — ka pärast avalikku käivitamist.
+              Registreeru varajaseks ligipääsuks. Saad isikliku sisseelamiskõne
+              asutajaga ja oled esimene, kes HireCheck Compliance&apos;it
+              proovida saab.
             </p>
           </div>
 
@@ -370,7 +305,7 @@ export default function TooandjateleEtPage() {
               >
                 {status === "submitting"
                   ? "Saadan…"
-                  : "Liitu asutajate ootejärjekorraga →"}
+                  : "Saa varajane ligipääs →"}
               </button>
 
               <p className="text-xs text-slate-500 text-center">
@@ -441,50 +376,6 @@ const FEATURES = [
     article: "GDPR art. 22",
     title: "Diskrimineerimise jälgimine",
     body: "Hoiatused, kui tagasilükkamise mustrid viitavad diskrimineerimisele. Automaatne art. 22 vastusemall, kui kandidaat kaebab otsuse peale.",
-  },
-]
-
-const PRICING = [
-  {
-    tier: "Starter",
-    price: 49,
-    audience: "< 50 töötajat · 1 AI-tööriist",
-    featured: false,
-    features: [
-      "AI-süsteemide register",
-      "Põhiline vastavuse kontrollnimekiri",
-      "3 dokumendigeneraatorit",
-      "Kuni 50 kandidaati kuus",
-      "E-posti tugi",
-    ],
-  },
-  {
-    tier: "Business",
-    price: 149,
-    audience: "50–500 töötajat",
-    featured: true,
-    features: [
-      "Kõik, mis Starteris",
-      "Kõik dokumendigeneraatorid (FRIA, art. 27)",
-      "Piiramatu kandidaatide arv",
-      "5 kasutajat · rollid",
-      "Otsuste auditilogi + eksport",
-      "Prioriteetne tugi",
-    ],
-  },
-  {
-    tier: "Enterprise",
-    price: 499,
-    audience: "500+ töötajat",
-    featured: false,
-    features: [
-      "Kõik, mis Businessis",
-      "Piiramatu kasutajaid",
-      "Kohandatud FRIA koos meie tiimiga",
-      "SSO · auditilogid",
-      "Määratud edukushaldaja",
-      "SLA",
-    ],
   },
 ]
 

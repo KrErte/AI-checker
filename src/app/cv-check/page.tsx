@@ -1,15 +1,13 @@
 "use client"
 import { useMemo, useState } from "react"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { analyzeCv, type HighlightType } from "@/lib/cv-analyzer"
-import { AlertTriangle, CheckCircle, FileText, Sparkles, ArrowRight, Shield } from "lucide-react"
+import { AlertTriangle, CheckCircle, FileText, Sparkles, Shield } from "lucide-react"
 
 const SAMPLE = `Passionate about leveraging cutting-edge technology to drive results. Results-driven software engineer with a proven track record of spearheading innovative solutions. Meticulously orchestrated the implementation of robust, scalable systems — delivering seamless user experiences across the entire ecosystem. Championed a paradigm shift in how our team approached optimization. Successfully streamlined workflows and significantly improved overall efficiency. Strategically leveraged emerging technologies to catalyze growth and empower cross-functional teams.`
 
-const STRIPE = process.env.NEXT_PUBLIC_STRIPE_CV_CHECK || "mailto:hello@hirecheck.eu?subject=Human-Proof%20my%20CV"
 
 const typeLabel: Record<HighlightType, string> = {
   cliche: "AI cliché",
@@ -183,60 +181,20 @@ export default function CvCheckPage() {
             </div>
           </div>
 
-          {/* Paid upsell */}
+          {/* CTA to report */}
           {hasInput && analysis.risk !== "low" && (
-            <div className="max-w-3xl mx-auto mt-12">
-              <Card className="border-blue-500 border-2 bg-gradient-to-br from-blue-50 to-white">
-                <CardContent className="pt-8 pb-8">
-                  <div className="flex items-start gap-4">
-                    <div className="hidden sm:flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600 text-white flex-shrink-0">
-                      <Sparkles className="h-6 w-6" />
-                    </div>
-                    <div className="flex-1">
-                      <div className="text-xs uppercase tracking-wide text-blue-600 font-bold mb-1">
-                        Human-proof my CV · €9
-                      </div>
-                      <h3 className="text-2xl font-bold mb-2">
-                        We rewrite the flagged sentences. By a human. Within 24 hours.
-                      </h3>
-                      <p className="text-sm text-slate-600 mb-4">
-                        Send your CV to our inbox. A human (not an LLM) rewrites
-                        every flagged sentence with specific, concrete
-                        alternatives tuned to your role. You receive back:
-                      </p>
-                      <ul className="text-sm text-slate-700 space-y-1.5 mb-5">
-                        <li className="flex gap-2">
-                          <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                          <span>3 rewritten versions of every flagged sentence</span>
-                        </li>
-                        <li className="flex gap-2">
-                          <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                          <span>A full &ldquo;safe-to-send&rdquo; rewrite of your CV</span>
-                        </li>
-                        <li className="flex gap-2">
-                          <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                          <span>Written response time: 24 hours or your money back</span>
-                        </li>
-                        <li className="flex gap-2">
-                          <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                          <span>No subscriptions, no upsells, no AI generation — just rewriting labour</span>
-                        </li>
-                      </ul>
-                      <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700">
-                        <a href={STRIPE}>
-                          Human-proof my CV · €9
-                          <ArrowRight className="ml-2 h-4 w-4" />
-                        </a>
-                      </Button>
-                      <p className="text-xs text-slate-500 mt-3">
-                        Honest disclaimer: we cannot guarantee any specific ATS
-                        or detector result. We can guarantee a human rewrite
-                        that eliminates the patterns listed above.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+            <div className="max-w-3xl mx-auto mt-12 text-center">
+              <p className="text-sm text-slate-600">
+                Already got auto-rejected? File a{" "}
+                <Link href="/human-review" className="text-blue-600 font-medium hover:underline">
+                  free GDPR Article 22 letter
+                </Link>{" "}
+                to demand a human review, or{" "}
+                <Link href="/submit" className="text-blue-600 font-medium hover:underline">
+                  report your experience
+                </Link>{" "}
+                to help other candidates.
+              </p>
             </div>
           )}
 

@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react"
 import Link from "next/link"
-import { QUESTIONS, scoreAnswers, type AnswerValue, type ReadinessResult, COMPLIANCE_TEMPLATES } from "@/lib/ai-act-check"
+import { QUESTIONS, scoreAnswers, type AnswerValue, type ReadinessResult } from "@/lib/ai-act-check"
 
 type Stage = "intro" | "quiz" | "email" | "result"
 
@@ -28,7 +28,6 @@ const RISK_LABELS: Record<ReadinessResult["risk"], string> = {
   high_annex_iii: "HIGH RISK — Annex III",
 }
 
-const STRIPE_LINK = process.env.NEXT_PUBLIC_STRIPE_AI_ACT_READY || ""
 
 export default function AiActReadyPage() {
   const [stage, setStage] = useState<Stage>("intro")
@@ -285,71 +284,29 @@ export default function AiActReadyPage() {
         </div>
       )}
 
-      <div className="mb-12 rounded-xl border-2 border-black bg-gray-50 p-6">
-        <p className="mb-2 text-xs font-bold uppercase tracking-widest text-gray-600">
-          The fix bundle · €49 one-time
-        </p>
-        <h3 className="mb-3 text-2xl font-bold">
-          Get all 8 templates to close every gap above
-        </h3>
-        <p className="mb-4 text-gray-700">
-          Markdown templates you copy, fill in, and ship today. Written against
-          the AI Act final text and GDPR. Used as the starter point by founders,
-          not as a final legal document.
-        </p>
-        <ul className="mb-6 grid gap-2 text-sm md:grid-cols-2">
-          {COMPLIANCE_TEMPLATES.map((t) => (
-            <li key={t.file} className="flex items-start gap-2">
-              <span className="text-green-600">✓</span>
-              <span>
-                <span className="font-medium">{t.title}</span>
-                <span className="block text-xs text-gray-600">{t.summary}</span>
-              </span>
-            </li>
-          ))}
-        </ul>
-        {STRIPE_LINK ? (
-          <a
-            href={STRIPE_LINK}
-            className="inline-block rounded-lg bg-black px-6 py-3 font-semibold text-white hover:bg-gray-800"
-          >
-            Get the bundle — €49 →
-          </a>
-        ) : (
-          <a
-            href={`mailto:hello@hirecheck.eu?subject=AI%20Act%20Ready%20bundle&body=Hi,%20I%20want%20the%20%E2%82%AC49%20AI%20Act%20Ready%20bundle.%20My%20score:%20${r.score}.`}
-            className="inline-block rounded-lg bg-black px-6 py-3 font-semibold text-white hover:bg-gray-800"
-          >
-            Email me to buy — €49 →
-          </a>
-        )}
-        <p className="mt-3 text-xs text-gray-500">
-          One-time payment. Lifetime updates until 2 August 2026. Refund if a
-          template is materially wrong.
-        </p>
-      </div>
-
-      {(r.risk === "high" || r.risk === "high_annex_iii") && (
-        <div className="mb-12 rounded-xl border-2 border-blue-600 bg-blue-50 p-6">
-          <p className="mb-2 text-xs font-bold uppercase tracking-widest text-blue-700">
-            Need more than templates?
+      {/* Next steps */}
+      <div className="mb-12 rounded-xl border-2 border-blue-600 bg-blue-50 p-6">
+        <h3 className="mb-3 text-2xl font-bold">What to do next</h3>
+        <div className="space-y-3 text-gray-700">
+          {r.gaps.length > 0 && (
+            <p>
+              You have <strong>{r.gaps.length} gap{r.gaps.length === 1 ? "" : "s"}</strong> to
+              close before 2 August 2026. Use the checklist above as your starting point —
+              each gap maps to a specific AI Act article.
+            </p>
+          )}
+          <p>
+            Want to stay audit-ready automatically?{" "}
+            <Link
+              href="/for-employers#waitlist"
+              className="font-semibold text-blue-600 underline"
+            >
+              Get early access to HireCheck Compliance
+            </Link>{" "}
+            — we&apos;re building a dashboard that generates every document, logs
+            every AI decision, and keeps you compliant.
           </p>
-          <h3 className="mb-3 text-2xl font-bold">
-            HireCheck Compliance — audit-ready dashboard from €49/mo
-          </h3>
-          <p className="mb-4 text-gray-700">
-            If you&apos;re a high-risk deployer, templates alone won&apos;t keep
-            you safe in an audit. HireCheck Compliance logs every AI decision,
-            generates your FRIA, and keeps every Article 26 document up to date
-            automatically. Founding price for the first 50 companies.
-          </p>
-          <Link
-            href="/for-employers#waitlist"
-            className="inline-block rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700"
-          >
-            Join the founding waitlist →
-          </Link>
-          <p className="mt-3 text-xs text-gray-500">
+          <p className="text-sm text-gray-500">
             Eesti keeles:{" "}
             <Link href="/et/tooandjatele#waitlist" className="underline">
               tooandjatele
@@ -357,7 +314,7 @@ export default function AiActReadyPage() {
             .
           </p>
         </div>
-      )}
+      </div>
 
       <div className="text-sm text-gray-500">
         <p className="mb-2">

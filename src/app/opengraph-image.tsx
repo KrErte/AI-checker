@@ -35,7 +35,7 @@ export default async function Image() {
               fontWeight: 900,
             }}
           >
-            HS
+            HC
           </div>
           <div style={{ fontSize: 36, fontWeight: 700 }}>HireCheck</div>
         </div>

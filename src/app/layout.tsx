@@ -47,11 +47,20 @@ export const metadata: Metadata = {
     title: TITLE,
     description: DESCRIPTION,
     locale: "en_EU",
+    images: [
+      {
+        url: `${SITE_URL}/og.png`,
+        width: 1200,
+        height: 630,
+        alt: "HireCheck — Your CV was rejected by AI. Demand a human review.",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,
+    images: [`${SITE_URL}/og.png`],
   },
   robots: {
     index: true,

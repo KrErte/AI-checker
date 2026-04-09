@@ -57,6 +57,11 @@ export default function HomePage() {
             </div>
 
             <LiveCounter />
+
+            <p className="mt-4 text-xs text-slate-500 max-w-lg mx-auto">
+              All reports are fully anonymous. We never collect your name, email
+              or IP address. Your privacy is protected under GDPR.
+            </p>
           </div>
         </div>
       </section>

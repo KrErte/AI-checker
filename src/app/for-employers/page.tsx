@@ -9,8 +9,8 @@ import {
   AlertTriangle,
   Users,
   Lock,
-  CheckCircle2,
   ArrowRight,
+  CheckCircle2,
   Clock,
 } from "lucide-react"
 
@@ -86,7 +86,7 @@ export default function ForEmployersPage() {
                 href="#waitlist"
                 className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3 text-base font-semibold text-white hover:bg-blue-700 shadow-sm"
               >
-                Join the founding waitlist
+                Get early access
                 <ArrowRight className="ml-2 h-4 w-4" />
               </a>
               <Link
@@ -96,10 +96,6 @@ export default function ForEmployersPage() {
                 Run the free 3-min check
               </Link>
             </div>
-            <p className="mt-5 text-xs text-slate-500">
-              Founding price — €49/month — locked for the first 50 companies,
-              for life.
-            </p>
           </div>
         </div>
       </section>
@@ -173,67 +169,6 @@ export default function ForEmployersPage() {
         </div>
       </section>
 
-      {/* Pricing */}
-      <section className="py-16 md:py-20 border-b border-slate-100">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3 text-center">
-            Pricing
-          </h2>
-          <p className="text-slate-600 mb-12 text-center">
-            Founding prices for the first 50 companies. Locked for life.
-          </p>
-          <div className="grid md:grid-cols-3 gap-6">
-            {PRICING.map((p) => (
-              <div
-                key={p.tier}
-                className={`rounded-xl border p-8 flex flex-col ${
-                  p.featured
-                    ? "border-blue-600 border-2 bg-gradient-to-b from-blue-50 to-white shadow-md"
-                    : "border-slate-200 bg-white"
-                }`}
-              >
-                {p.featured && (
-                  <div className="mb-3 inline-block rounded-full bg-blue-600 px-3 py-0.5 text-xs font-bold uppercase tracking-wider text-white w-fit">
-                    Most popular
-                  </div>
-                )}
-                <div className="text-sm font-semibold text-slate-600 mb-1">
-                  {p.tier}
-                </div>
-                <div className="mb-1">
-                  <span className="text-4xl font-bold text-slate-900">
-                    €{p.price}
-                  </span>
-                  <span className="text-slate-500">/mo</span>
-                </div>
-                <div className="text-xs text-slate-500 mb-6">{p.audience}</div>
-                <ul className="space-y-2 text-sm text-slate-700 mb-6 flex-1">
-                  {p.features.map((feat) => (
-                    <li key={feat} className="flex gap-2">
-                      <CheckCircle2 className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                      <span>{feat}</span>
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href="#waitlist"
-                  className={`rounded-lg px-4 py-2.5 text-sm font-semibold text-center ${
-                    p.featured
-                      ? "bg-blue-600 text-white hover:bg-blue-700"
-                      : "border border-slate-300 bg-white text-slate-800 hover:bg-slate-50"
-                  }`}
-                >
-                  Join waitlist
-                </a>
-              </div>
-            ))}
-          </div>
-          <p className="mt-8 text-center text-xs text-slate-500">
-            Annual billing available (−20%). 14-day free trial. No credit card
-            required for the waitlist.
-          </p>
-        </div>
-      </section>
 
       {/* Timeline */}
       <section className="py-16 md:py-20 bg-slate-900 text-white">
@@ -263,16 +198,15 @@ export default function ForEmployersPage() {
         <div className="container mx-auto px-4 max-w-2xl">
           <div className="text-center mb-10">
             <p className="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-2">
-              Founding waitlist
+              Early access
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3">
-              Lock in €49/month for life
+              Be the first to know when we launch
             </h2>
             <p className="text-slate-600">
-              First 50 companies. You&apos;ll get a 20-minute onboarding call
-              directly with the founder, free migration from any existing
-              process, and the €49 price locked forever — even after public
-              launch.
+              Sign up for early access. You&apos;ll get a personal onboarding
+              call with the founder and be first to try HireCheck Compliance
+              when it goes live.
             </p>
           </div>
 
@@ -368,7 +302,7 @@ export default function ForEmployersPage() {
               >
                 {status === "submitting"
                   ? "Submitting…"
-                  : "Join the founding waitlist →"}
+                  : "Get early access →"}
               </button>
 
               <p className="text-xs text-slate-500 text-center">
@@ -438,50 +372,6 @@ const FEATURES = [
     article: "GDPR Art. 22",
     title: "Bias & rights monitoring",
     body: "Alerts when rejection patterns suggest discrimination. Auto-generated Article 22 response templates when candidates appeal.",
-  },
-]
-
-const PRICING = [
-  {
-    tier: "Starter",
-    price: 49,
-    audience: "< 50 employees · 1 AI tool",
-    featured: false,
-    features: [
-      "AI Systems Inventory",
-      "Core compliance checklist",
-      "3 document generators",
-      "Up to 50 candidates / month",
-      "Email support",
-    ],
-  },
-  {
-    tier: "Business",
-    price: 149,
-    audience: "50–500 employees",
-    featured: true,
-    features: [
-      "Everything in Starter",
-      "All document generators (FRIA, Art. 27)",
-      "Unlimited candidates",
-      "5 user seats · role management",
-      "Decision audit trail + export",
-      "Priority support",
-    ],
-  },
-  {
-    tier: "Enterprise",
-    price: 499,
-    audience: "500+ employees",
-    featured: false,
-    features: [
-      "Everything in Business",
-      "Unlimited seats",
-      "Custom FRIA with our team",
-      "SSO · audit logs",
-      "Dedicated success manager",
-      "SLA",
-    ],
   },
 ]
 

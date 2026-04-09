@@ -12,7 +12,7 @@ import { randomUUID } from "crypto"
 import { createClient } from "@/lib/supabase/server"
 import type { Outcome, ResponseTime } from "@/lib/supabase/types"
 
-const DATA_DIR = process.env.DATA_DIR || "/app/data"
+const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), "data")
 const COMPANIES_FILE = path.join(DATA_DIR, "companies.json")
 const REPORTS_FILE = path.join(DATA_DIR, "reports.json")
 
