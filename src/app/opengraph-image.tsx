@@ -57,10 +57,10 @@ export default async function Image() {
 
         <div
           style={{
-            fontSize: 34,
-            marginTop: 32,
-            maxWidth: 980,
-            lineHeight: 1.3,
+            fontSize: 30,
+            marginTop: 28,
+            maxWidth: 900,
+            lineHeight: 1.35,
             opacity: 0.95,
             display: "flex",
           }}
@@ -74,8 +74,8 @@ export default async function Image() {
             display: "flex",
             alignItems: "center",
             marginTop: "auto",
-            fontSize: 28,
-            opacity: 0.9,
+            fontSize: 24,
+            opacity: 0.8,
           }}
         >
           hirecheck.eu

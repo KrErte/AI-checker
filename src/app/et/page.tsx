@@ -17,6 +17,36 @@ export const metadata: Metadata = {
   title: "Sinu CV lükkas tagasi AI. Nõua inimest.",
   description:
     "GDPR artikkel 22 annab sulle õiguse nõuda, et ühtegi täisautomaatset värbamisotsust vaataks üle inimene. Genereeri tasuta kiri, raporteeri ebaõiglasi värbamisi ja võrdle EL tööandjaid enne kui 2026. augustis lööb kogu jõuga sisse AI Act.",
+  openGraph: {
+    title: "HireCheck — Sinu CV lükkas tagasi AI. Nõua inimest.",
+    description:
+      "GDPR artikkel 22 annab sulle õiguse nõuda, et ühtegi täisautomaatset värbamisotsust vaataks üle inimene. Genereeri tasuta kiri ja võrdle EL tööandjaid.",
+    url: "https://hirecheck.eu/et",
+    locale: "et_EE",
+    images: [
+      {
+        url: "https://hirecheck.eu/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "HireCheck — Sinu CV lükkas tagasi AI. Nõua inimest.",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "HireCheck — Sinu CV lükkas tagasi AI. Nõua inimest.",
+    description:
+      "GDPR artikkel 22 annab sulle õiguse nõuda, et ühtegi täisautomaatset värbamisotsust vaataks üle inimene.",
+    images: ["https://hirecheck.eu/opengraph-image"],
+  },
+  alternates: {
+    canonical: "https://hirecheck.eu/et",
+    languages: {
+      "en-EU": "https://hirecheck.eu",
+      "et-EE": "https://hirecheck.eu/et",
+      "x-default": "https://hirecheck.eu",
+    },
+  },
 }
 
 export default function HomeEt() {

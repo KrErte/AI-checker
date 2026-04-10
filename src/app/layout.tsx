@@ -47,20 +47,11 @@ export const metadata: Metadata = {
     title: TITLE,
     description: DESCRIPTION,
     locale: "en_EU",
-    images: [
-      {
-        url: `${SITE_URL}/og.png`,
-        width: 1200,
-        height: 630,
-        alt: "HireCheck — Your CV was rejected by AI. Demand a human review.",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,
-    images: [`${SITE_URL}/og.png`],
   },
   robots: {
     index: true,
@@ -89,6 +80,25 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
           <Footer />
         </div>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "HireCheck",
+              url: "https://hirecheck.eu",
+              description: DESCRIPTION,
+              inLanguage: ["en", "et"],
+              publisher: {
+                "@type": "Organization",
+                name: "HireCheck",
+                url: "https://hirecheck.eu",
+                logo: "https://hirecheck.eu/favicon.ico",
+              },
+            }),
+          }}
+        />
         {PLAUSIBLE_DOMAIN && (
           <Script
             defer

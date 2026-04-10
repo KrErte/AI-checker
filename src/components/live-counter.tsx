@@ -1,5 +1,6 @@
 "use client"
 import { useEffect, useState } from "react"
+import { usePathname } from "next/navigation"
 
 interface Stats {
   total_reports: number
@@ -9,6 +10,8 @@ interface Stats {
 
 export function LiveCounter() {
   const [stats, setStats] = useState<Stats | null>(null)
+  const pathname = usePathname() || "/"
+  const isEt = pathname === "/et" || pathname.startsWith("/et/")
 
   useEffect(() => {
     let cancelled = false
@@ -40,8 +43,10 @@ export function LiveCounter() {
         </span>
         <span className="text-slate-600">
           <strong className="text-slate-900">{total.toLocaleString()}</strong>{" "}
-          {total === 1 ? "report" : "reports"}
-          {total === 0 && " · be the first"}
+          {isEt
+            ? (total === 1 ? "raport" : "raportit")
+            : (total === 1 ? "report" : "reports")}
+          {total === 0 && (isEt ? " · ole esimene" : " · be the first")}
         </span>
       </div>
       {total > 0 && (
@@ -49,13 +54,17 @@ export function LiveCounter() {
           <span className="text-slate-400">·</span>
           <span className="text-slate-600">
             <strong className="text-slate-900">{companies.toLocaleString()}</strong>{" "}
-            {companies === 1 ? "company" : "companies"} on file
+            {isEt
+              ? (companies === 1 ? "ettevõte" : "ettevõtet")
+              : (companies === 1 ? "company" : "companies")}{" "}
+            {isEt ? "failis" : "on file"}
           </span>
           {today > 0 && (
             <>
               <span className="text-slate-400">·</span>
               <span className="text-slate-600">
-                <strong className="text-slate-900">{today}</strong> in the last 24h
+                <strong className="text-slate-900">{today}</strong>{" "}
+                {isEt ? "viimase 24h jooksul" : "in the last 24h"}
               </span>
             </>
           )}
